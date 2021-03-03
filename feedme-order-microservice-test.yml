@@ -16,7 +16,7 @@ spring:
   application:
     name: feedme-order-microservice
   redis:
-    host: localhost
+    host: host.docker.internal
     port: 31848
   datasource:
     url: jdbc:mysql://${db.host:host.docker.internal}:${db.port:3306}/${db.name:order_database}?useSSL=false
