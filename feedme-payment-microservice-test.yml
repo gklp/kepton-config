@@ -1,0 +1,33 @@
+server:
+  port: 8082
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+  instance:
+    preferIpAddress: true
+spring:
+  application:
+    name: feedme-payment-microservice
+  redis:
+    host: localhost
+    port: 31848    
+  datasource:
+    url: jdbc:mysql://${db.host:localhost}:${db.port:3306}/${db.name:payment_database}?useSSL=false
+    username: ${db.uid:root}
+    password: ${db.pwd:}
+    driver-class-name: com.mysql.jdbc.Driver
+    tomcat:
+      test-while-idle: true
+      validation-query: SELECT 1
+    initialization-mode: never
+    platform: mysql
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+    hibernate:
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+      ddl-auto: update
+    show-sql: true
