@@ -1,0 +1,45 @@
+server:
+  port: 8081
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://172.17.0.4:8761/eureka}
+  instance:
+    preferIpAddress: true
+feign:
+  client:
+    config: 
+      default:
+        connectTimeout: 160000000
+        readTimeout: 160000000
+spring:
+  application:
+    name: feedme-order-microservice
+  redis:
+    host: host.docker.internal
+    port: 31848
+  datasource:
+    url: jdbc:mysql://${db.host:localhost}:${db.port:3306}/${db.name:order_database}?useSSL=false
+    username: ${db.uid:root}
+    password: ${db.pwd:}
+    driver-class-name: com.mysql.jdbc.Driver
+    tomcat:
+      test-while-idle: true
+      validation-query: SELECT 1
+    initialization-mode: never
+    platform: mysql
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+    hibernate:
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+      ddl-auto: update
+    show-sql: true
+feedme:
+  fegin:
+    restaurant:
+      api: api/v1/restaurant
+    payment:
+      api: api/v1/payment
