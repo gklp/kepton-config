@@ -21,7 +21,7 @@ spring:
   datasource:
     url: jdbc:mysql://${db.host:localhost}:${db.port:3306}/${db.name:order_database}?useSSL=false
     username: ${db.uid:root}
-    password: ${db.pwd:pI3^=3N1Q+3NJ^q&R6%puT3b6X9xdA#+}
+    password: ${db.pwd:}
     driver-class-name: com.mysql.jdbc.Driver
     tomcat:
       test-while-idle: true
